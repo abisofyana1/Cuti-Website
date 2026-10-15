@@ -1,0 +1,5 @@
+{
+  "name": "E-Cuti Modern",
+  "description": "A modern, responsive Leave Management System rebuilt with React, TypeScript, and Tailwind CSS to replace legacy Google Apps Script solutions.",
+  "requestFramePermissions": []
+}
