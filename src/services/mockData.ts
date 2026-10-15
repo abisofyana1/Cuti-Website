@@ -69,14 +69,14 @@ export const MOCK_SERVICES: Service[] = [
 
 export const MOCK_LEAVES: LeaveRequest[] = [
   {
-    id: 'CT-DEMO-001',
+    id: 'CT-DEMO-TL',
     userEmail: 'user@ecuti.com',
     userName: 'User Demo (Karyawan)',
     service: 'CX DIGITAL',
     startDate: '2026-10-20',
     endDate: '2026-10-21',
     totalDays: 2,
-    reason: 'Keperluan Keluarga',
+    reason: 'Keperluan Keluarga (Menunggu TL)',
     status: 'PENDING',
     currentPosition: 'TL',
     approverTL: 'tl@ecuti.com',
@@ -93,7 +93,73 @@ export const MOCK_LEAVES: LeaveRequest[] = [
     ]
   },
   {
-    id: 'CT-DEMO-002',
+    id: 'CT-DEMO-SPV',
+    userEmail: 'user@ecuti.com',
+    userName: 'User Demo (Karyawan)',
+    service: 'CX DIGITAL',
+    startDate: '2026-11-05',
+    endDate: '2026-11-06',
+    totalDays: 2,
+    reason: 'Urusan Bank (Sudah di-Approve TL, Menunggu SPV)',
+    status: 'PENDING',
+    currentPosition: 'SPV',
+    approverTL: 'tl@ecuti.com',
+    approverSPV: 'spv@ecuti.com',
+    approverMGR: 'mgr@ecuti.com',
+    createdAt: new Date().toISOString(),
+    history: [
+      {
+        stage: 'User',
+        actor: 'User Demo (Karyawan)',
+        action: 'SUBMIT',
+        timestamp: new Date().toISOString()
+      },
+      {
+        stage: 'TL',
+        actor: 'Budi Team Leader',
+        action: 'APPROVE',
+        timestamp: new Date().toISOString()
+      }
+    ]
+  },
+  {
+    id: 'CT-DEMO-MGR',
+    userEmail: 'user@ecuti.com',
+    userName: 'User Demo (Karyawan)',
+    service: 'CX DIGITAL',
+    startDate: '2026-12-01',
+    endDate: '2026-12-03',
+    totalDays: 3,
+    reason: 'Liburan Akhir Tahun (Sudah di-Approve TL & SPV, Menunggu Manager)',
+    status: 'PENDING',
+    currentPosition: 'MGR',
+    approverTL: 'tl@ecuti.com',
+    approverSPV: 'spv@ecuti.com',
+    approverMGR: 'mgr@ecuti.com',
+    createdAt: new Date().toISOString(),
+    history: [
+      {
+        stage: 'User',
+        actor: 'User Demo (Karyawan)',
+        action: 'SUBMIT',
+        timestamp: new Date().toISOString()
+      },
+      {
+        stage: 'TL',
+        actor: 'Budi Team Leader',
+        action: 'APPROVE',
+        timestamp: new Date().toISOString()
+      },
+      {
+        stage: 'SPV',
+        actor: 'Siti Supervisor',
+        action: 'APPROVE',
+        timestamp: new Date().toISOString()
+      }
+    ]
+  },
+  {
+    id: 'CT-DEMO-APPROVED',
     userEmail: 'user@ecuti.com',
     userName: 'User Demo (Karyawan)',
     service: 'CX DIGITAL',
@@ -125,6 +191,12 @@ export const MOCK_LEAVES: LeaveRequest[] = [
         actor: 'Siti Supervisor',
         action: 'APPROVE',
         timestamp: '2026-08-01T10:00:00.000Z'
+      },
+      {
+        stage: 'MGR',
+        actor: 'Ahmad Manager',
+        action: 'APPROVE',
+        timestamp: '2026-08-01T11:00:00.000Z'
       }
     ]
   }
