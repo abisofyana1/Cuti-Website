@@ -27,7 +27,12 @@ export const LeaveForm: React.FC = () => {
         setUsersList(usersData);
         setHolidaysList(holidaysData);
       } catch (err) {
-        console.error("Failed to fetch initial data", err);
+        console.warn("Failed to fetch initial data from server, using mock fallback", err);
+        try {
+          const { MOCK_USERS, MOCK_HOLIDAYS } = await import('../services/mockData');
+          setUsersList(MOCK_USERS);
+          setHolidaysList(MOCK_HOLIDAYS);
+        } catch (e) {}
       }
     };
     fetchInitData();

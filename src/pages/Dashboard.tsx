@@ -138,7 +138,14 @@ export const Dashboard: React.FC = () => {
         // --- NOTIFICATION LOGIC END ---
 
       } catch (error) {
-        console.error("Gagal mengambil data cuti", error);
+        console.warn("Gagal mengambil data cuti dari server, menggunakan data demo lokal.", error);
+        // Fallback demo lokal
+        try {
+          const { MOCK_LEAVES } = await import('../services/mockData');
+          const myCurrentLeaves = MOCK_LEAVES.filter(l => l.userEmail === user?.email);
+          setMyLeaves(myCurrentLeaves);
+          setLiveBalance(user?.balance || 12);
+        } catch (e) {}
       }
     };
 

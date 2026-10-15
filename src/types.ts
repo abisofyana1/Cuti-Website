@@ -14,6 +14,7 @@ export interface User {
   position: string;
   vendor: string;
   service: string;
+  hq?: string;
   tlEmail?: string;
   spvEmail?: string;
   mgrEmail?: string;
@@ -41,6 +42,7 @@ export interface LeaveRequest {
     actor: string;
     action: 'SUBMIT' | 'APPROVE' | 'REJECT';
     timestamp: string;
+    comment?: string;
   }[];
 }
 

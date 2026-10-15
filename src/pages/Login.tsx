@@ -113,6 +113,14 @@ export const Login: React.FC = () => {
             ) : 'MASUK'}
           </button>
         </form>
+
+        <div className="mt-6 pt-4 border-t border-gray-100 text-center">
+          <p className="text-xs font-semibold text-gray-500 mb-2">Akun Uji Coba Demo (Tanpa Database):</p>
+          <div className="bg-gray-50 p-2.5 rounded-lg text-xs text-gray-600 space-y-1">
+            <p><strong>User Biasa:</strong> <code className="text-blue-600 bg-blue-50 px-1 py-0.5 rounded">user@ecuti.com</code> | Pass: <code className="text-blue-600 bg-blue-50 px-1 py-0.5 rounded">123</code></p>
+            <p><strong>Admin:</strong> <code className="text-blue-600 bg-blue-50 px-1 py-0.5 rounded">admin@ecuti.com</code> | Pass: <code className="text-blue-600 bg-blue-50 px-1 py-0.5 rounded">admin</code></p>
+          </div>
+        </div>
       </div>
     </div>
   );

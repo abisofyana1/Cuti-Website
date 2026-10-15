@@ -104,9 +104,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // Mulai tracking waktu
       updateLastActivity();
       setIsSessionExpired(false);
+      return;
 
     } catch (error: any) {
-      throw new Error(error.message || "Terjadi kesalahan saat login.");
+      // Backend offline atau tidak terhubung -> gunakan Mock Data lokal
+      console.warn("Backend API tidak dapat dihubungi, beralih ke mode offline/mock login.");
+    }
+
+    const { MOCK_USERS } = await import('../services/mockData');
+    const inputClean = email.trim().toLowerCase();
+    const matchedUser = MOCK_USERS.find(
+      u => u.email.toLowerCase() === inputClean || (u.hq && u.hq.toLowerCase() === inputClean)
+    );
+
+    if (matchedUser && matchedUser.password === pass) {
+      setUser(matchedUser);
+      localStorage.setItem(STORAGE_USER_KEY, JSON.stringify(matchedUser));
+      updateLastActivity();
+      setIsSessionExpired(false);
+    } else {
+      throw new Error("Email / HQ atau password salah. Coba akun demo: user@ecuti.com / 123");
     }
   };
 
