@@ -34,7 +34,18 @@ export const Approvals: React.FC = () => {
         });
         setTasks(myTasks);
       } catch (e) {
-        console.error("Error loading approvals", e);
+        console.warn("Backend offline, menggunakan data demo untuk approval", e);
+        try {
+          const { MOCK_LEAVES } = await import('../services/mockData');
+          const myTasks = MOCK_LEAVES.filter(l => {
+              if (l.status !== 'PENDING') return false;
+              if (l.currentPosition === 'TL' && l.approverTL === user.email) return true;
+              if (l.currentPosition === 'SPV' && l.approverSPV === user.email) return true;
+              if (l.currentPosition === 'MGR' && l.approverMGR === user.email) return true;
+              return false;
+          });
+          setTasks(myTasks);
+        } catch (err) {}
       }
     };
     fetchTasks();
