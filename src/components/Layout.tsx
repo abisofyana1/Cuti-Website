@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { LayoutDashboard, Users, FileText, Settings, UserPlus, FileUp, Download, LogOut, CheckSquare, PlusSquare, Clock, ShieldCheck, User, X, Layers, Menu, PlusCircle, Calendar } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { apiService } from '../services/api';
+import bgImage from '../assets/E-Cuti-BG.png';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, logout } = useAuth();
@@ -251,8 +252,14 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       )}
 
       {/* Main Content */}
-      <main className="flex-1 p-4 md:px-6 md:py-4 pt-20 md:pt-4 bg-gray-50 min-h-screen transition-all duration-300 min-w-0">
-        <div className="w-full mx-auto">
+      <main 
+        className="flex-1 p-4 md:px-6 md:py-4 pt-20 md:pt-4 min-h-screen transition-all duration-300 min-w-0 bg-cover bg-center bg-no-repeat bg-fixed relative"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      >
+        {/* Soft semi-transparent backdrop to ensure dashboard cards stay crisp and readable */}
+        <div className="absolute inset-0 bg-slate-100/85 backdrop-blur-[1px] pointer-events-none" />
+
+        <div className="w-full mx-auto relative z-10">
           {children}
         </div>
       </main>

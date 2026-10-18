@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Lock, Mail, CheckSquare, Clock, AlertTriangle } from 'lucide-react';
+import bgImage from '../assets/E-Cuti-BG.png';
 
 export const Login: React.FC = () => {
   const { login, isSessionExpired, resetSessionStatus } = useAuth();
@@ -38,8 +39,14 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 to-indigo-800 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 transform transition-all relative overflow-hidden">
+    <div 
+      className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4 relative"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      {/* Dark overlay with slight blur so form card stands out cleanly */}
+      <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px]" />
+
+      <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl w-full max-w-md p-8 transform transition-all relative overflow-hidden z-10 border border-white/20">
         
         {/* Session Expired Notification Overlay */}
         {isSessionExpired && (
